@@ -1,5 +1,5 @@
-🚀 PIA XXII — Aventura Espacial
-📖 Història
+PIA XXII — Aventura Espacial
+Història
 
 Any 2120 d.C.
 
@@ -17,7 +17,7 @@ iHall: —Li garanteixo, capità Bond, que no és una falsa alarma. No m'arrisca
 
 Bond: —Està bé, iHall —murmurà el capità, ja més despert i calmat—. Donem l'informe de la situació i anem per feina! Vull tornar a agafar el son.
 
-🛸 L'incident
+L'incident
 
 iHall procedeix a explicar detalladament la situació.
 
@@ -41,15 +41,15 @@ Potser el capità haurà de buscar la seva targeta per la nau... o intentar acon
 
 Per poder reparar els motors, en Bond haurà de:
 
-👨‍🚀 Posar-se el vestit d'astronauta, que es troba al vestuari.
-🔦 Trobar la llanterna per poder explorar determinades zones.
-🛠️ Aconseguir l'eina especial necessària per reparar els motors.
-🚪 Superar les diferents portes i zones de la nau.
-🪪 Aconseguir una targeta d'identificació si és necessari.
+- Posar-se el vestit d'astronauta, que es troba al vestuari.
+- Trobar la llanterna per poder explorar determinades zones.
+- Aconseguir l'eina especial necessària per reparar els motors.
+- Superar les diferents portes i zones de la nau.
+- Aconseguir una targeta d'identificació si és necessari.
 
 Sense el vestit d'astronauta, no podrà sobreviure a l'exterior de la nau.
 
-👽 El perill: "Malien"
+El perill: "Malien"
 
 Per si tot això no fos suficient, la nau té un altre problema.
 
@@ -57,11 +57,11 @@ Inspirat en la famosa saga de Ridley Scott, un Alien ronda per la nau. Se'l cone
 
 Però el Malien té un punt feble:
 
-🍩 Li encanten els dònuts.
+Li encanten els dònuts.
 
 Si en Bond es troba amb ell, els dònuts poden ser l'única manera de distreure'l i aconseguir continuar la missió.
 
-🏁 L'objectiu
+L'objectiu
 
 Un cop reparats els propulsors dels motors, en Bond haurà de tornar ràpidament fins a la sala de comandaments per posar novament en marxa els motors.
 
@@ -69,8 +69,8 @@ La missió és clara:
 
 Explorar la nau, superar els obstacles, evitar el Malien, reparar els motors i aconseguir que la PIA XXII pugui continuar el seu viatge cap a SUMMEM.
 
-❓ Podrà en Bond superar el Malien?
-🔧 Podrà reparar els motors?
-🚀 Aconseguirà la PIA XXII prosseguir la seva missió cap a SUMMEM?
+- Podrà en Bond superar el Malien?
+- Podrà reparar els motors?
+- Aconseguirà la PIA XXII prosseguir la seva missió cap a SUMMEM?
 
 La decisió és a les teves mans.
