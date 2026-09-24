@@ -1,3 +1,3 @@
-public class habitacio {
+public class Habitacio {
     
 }

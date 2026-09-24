@@ -1,3 +1,3 @@
-public class inventari {
+public class Inventari {
     
 }

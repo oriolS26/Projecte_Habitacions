@@ -1,3 +1,3 @@
-public class alien {
+public class Alien {
     
 }
