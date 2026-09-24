@@ -30,9 +30,9 @@ public class Jugador {
 
             habitacioActual = novaHabitacio;
 
-            sysout.println("Has entrat a la habitació: " + habitacioActual.getNom());
+            system.out.println("Has entrat a la habitació: " + habitacioActual.getNom());
         } else {
-            sysout.println("La porta està tancada. No pots passar.");
+            system.out.println("La porta està tancada. No pots passar.");
         }
     }
 }
