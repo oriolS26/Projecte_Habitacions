@@ -1,3 +1,3 @@
-public class ordinador {
+public class Ordinador {
     
 }
