@@ -2,37 +2,32 @@ public class Jugador {
     String nom;
     Habitacio habitacioActual;
 
-    public Jugador(String nom, Habitacio habitacioActual) {
+    public Jugador(String nom, Habitacio habitacioInicial) {
         this.nom = nom;
-        this.habitacioActual = habitacioActual;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public Habitacio getHabitacioActual() {
-        return habitacioActual;
-    }
-
-    public void setHabitacioActual(Habitacio habitacioActual) {
-        this.habitacioActual = habitacioActual;
-    }
-
-    public void SetNom(String nom) {
-        this.nom = nom;
+        this.habitacioActual = habitacioInicial;
     }
     
-    public void moure(Porta porta) {
-        if(porta = true) {
+    public void moure(Porta numeroPorta) {
 
-            Habitacio novaHabitacio = porta.obtenirAltreHabitacio(habitacioActual);
+        Porta portaEscollida = habitacioActual.obtenirPorta(numeroPorta);
 
-            habitacioActual = novaHabitacio;
+        if(portaEscollida == null) {
 
-            System.out.println("Has entrat a la habitació: " + habitacioActual.getNom());
-        } else {
-            System.out.println("La porta està tancada. No pots passar.");
-        }
+            System.out.println("Aquesta porta no existeix en aquesta habitacio.");
+
+            } else {
+
+            if (portaEscollida.oberta) {
+
+                habitacioActual =
+                portaEscollida.obtenirAltraHabitacio(habitacioActual);
+            
+            System.out.println();
+            System.out.println( "Has anat a: " + habitacioActual.nom);
+                } else {
+
+                System.out.println("La porta esta tancada.");
+                }
+            }
     }
 }
