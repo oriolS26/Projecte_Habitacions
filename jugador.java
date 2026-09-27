@@ -1,8 +1,10 @@
 import Habitacions.Porta;
+import Habitacions.habitacio;
+
 
 public class jugador {
-    String nom;
-    habitacio habitacioActual;
+    private String nom;
+    private habitacio habitacioActual;
 
     public jugador(String nom, habitacio habitacioActual) {
         this.nom = nom;
@@ -23,7 +25,6 @@ public class jugador {
 
     public void SetNom(String nom) {
         this.nom = nom;
-        this.habitacioActual = habitacioInicial;
     }
     
     public void moure(Porta numeroPorta) {
@@ -36,13 +37,15 @@ public class jugador {
 
             } else {
 
-            if (portaEscollida.oberta) {
+            if (portaEscollida.estaOberta()) {
 
-                habitacioActual =
-                portaEscollida.obtenirAltraHabitacio(habitacioActual);
+                habitacio novaHabitacio = 
+                    portaEscollida.obtenirAltraHabitacio(habitacioActual);
+
+                habitacioActual = novaHabitacio;
             
             System.out.println();
-            System.out.println( "Has anat a: " + habitacioActual.nom);
+            System.out.println( "Has anat a: " + habitacioActual.getNom());
                 } else {
 
                 System.out.println("La porta esta tancada.");
