@@ -158,7 +158,30 @@ public class joc {
                 dormitori
         );
 
+        boolean continuar = true;
 
+        while (continuar) {
+
+            jugador1.getHabitacioActual().mostrarDeescripcio();
+
+            System.out.println("0. Sortir del joc");
+            System.out.print("Escull una porta: ");
+
+            int opcio = scanner.nextInt();
+
+            if (opcio == 0) {
+
+                continuar = false;
+
+            } else {
+
+                jugador1.moure(opcio - 1);
+            }
+        }
+
+        System.out.println();
+        System.out.println("Has sortit del joc.");
+    }
         
 
     public void mostrarMenu() {
