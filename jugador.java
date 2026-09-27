@@ -1,3 +1,5 @@
+import Habitacions.Porta;
+
 public class jugador {
     String nom;
     Habitacio habitacioActual;
