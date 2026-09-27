@@ -27,7 +27,7 @@ public class jugador {
         this.nom = nom;
     }
     
-    public void moure(Porta numeroPorta) {
+    public void moure(int numeroPorta) {
 
         Porta portaEscollida = habitacioActual.obtenirPorta(numeroPorta);
 
