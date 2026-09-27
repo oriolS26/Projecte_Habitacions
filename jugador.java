@@ -2,9 +2,9 @@ import Habitacions.Porta;
 
 public class jugador {
     String nom;
-    Habitacio habitacioActual;
+    habitacio habitacioActual;
 
-    public jugador(String nom, Habitacio habitacioActual) {
+    public jugador(String nom, habitacio habitacioActual) {
         this.nom = nom;
         this.habitacioActual = habitacioActual;
     }
@@ -13,11 +13,11 @@ public class jugador {
         return nom;
     }
 
-    public Habitacio getHabitacioActual() {
+    public habitacio getHabitacioActual() {
         return habitacioActual;
     }
 
-    public void setHabitacioActual(Habitacio habitacioActual) {
+    public void setHabitacioActual(habitacio habitacioActual) {
         this.habitacioActual = habitacioActual;
     }
 
