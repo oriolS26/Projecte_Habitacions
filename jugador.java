@@ -1,8 +1,25 @@
-public class Jugador {
+public class jugador {
     String nom;
     Habitacio habitacioActual;
 
-    public Jugador(String nom, Habitacio habitacioInicial) {
+    public jugador(String nom, Habitacio habitacioActual) {
+        this.nom = nom;
+        this.habitacioActual = habitacioActual;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public Habitacio getHabitacioActual() {
+        return habitacioActual;
+    }
+
+    public void setHabitacioActual(Habitacio habitacioActual) {
+        this.habitacioActual = habitacioActual;
+    }
+
+    public void SetNom(String nom) {
         this.nom = nom;
         this.habitacioActual = habitacioInicial;
     }
