@@ -182,10 +182,6 @@ public class joc {
         System.out.println();
         System.out.println("Has sortit del joc.");
     }
-        
 
-    public void mostrarMenu() {
-        
-    }
 
 }
