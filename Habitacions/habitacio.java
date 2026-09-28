@@ -56,9 +56,13 @@ public class habitacio {
 
             if (portes[i] != null) {
 
-                String estat = portes[i].estaOberta()
-                        ? "oberta"
-                        : "tancada";
+                String estat;
+
+                if (portes[i].estaOberta()) {
+                    estat = "oberta";
+                } else {
+                    estat = "tancada";
+                }
 
                 System.out.println(
                     (i + 1) + ". "
