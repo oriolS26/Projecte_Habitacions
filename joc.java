@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class joc {
     public static Scanner scanner = new Scanner(System.in);
+
+    private int instruccionsPerMorir = -1;
     public static void main(String[] args) {
         joc inici = new joc();
         inici.start();
@@ -26,10 +28,13 @@ public class joc {
 
         Company companyia1 = crearCompany(habitacions);
 
+        Ordinador ordinador1 = new Ordinador("iHall");
+
         iniciarPartida(
                 jugador1,
                 alien1,
                 companyia1,
+                ordinador1,
                 habitacions
         );
     }
@@ -42,7 +47,8 @@ public class joc {
         System.out.println("3. Deixar objecte");
         System.out.println("4. Usar objecte");
         System.out.println("5. Veure inventari");
-        System.out.println("9. Parlar");
+        System.out.println("6. Parlar amb iHall");
+        System.out.println("7. Parlar");
         System.out.println("0. Sortir del joc");
 
         System.out.print("Escull una opcio: ");
@@ -307,7 +313,7 @@ public class joc {
 
         return new Company(
                 "Company",
-                habitacions[4]
+                habitacions[5]
         );
     }
 
@@ -315,9 +321,12 @@ public class joc {
         jugador jugador1,
         Alien alien1,
         Company companyia1,
+        Ordinador ordinador1,
         habitacio[] habitacions) {
 
         int comptadorMoviments = 0;
+
+        instruccionsPerMorir = -1;
 
         boolean continuar = true;
 
@@ -328,6 +337,8 @@ public class joc {
                 mostrarMenu();
 
                 int opcio = scanner.nextInt();
+
+                boolean cuentaAtrasActiva = instruccionsPerMorir > 0;
 
                 if (opcio == 0) {
 
@@ -349,7 +360,7 @@ public class joc {
 
                 } else if (opcio == 2) {
 
-                agafarObjecte(jugador1);
+                agafarObjecte(jugador1, companyia1);
 
                 } else if (opcio == 3) {
 
@@ -363,7 +374,16 @@ public class joc {
 
                 jugador1.mostrarInventari();
 
-                } else if (opcio == 9) {
+                } else if (opcio == 6) {
+
+                parlarAmbIHall(
+                        jugador1,
+                        alien1,
+                        ordinador1,
+                        habitacions
+                );
+
+                } else if (opcio == 7) {
 
                 parlar(
                         jugador1,
@@ -374,6 +394,29 @@ public class joc {
                 } else {
 
                 System.out.println("Opcio incorrecta.");
+                }
+
+                if (continuar && cuentaAtrasActiva && opcio >= 1 && opcio <= 7) {
+
+                        instruccionsPerMorir--;
+
+                        if (instruccionsPerMorir <= 0) {
+
+                                System.out.println();
+                                System.out.println("El Malien petit surt del teu estomac...");
+                                System.out.println("HAS MORT.");
+                                System.out.println();
+
+                                continuar = false;
+
+                        } else {
+
+                                System.out.println();
+                                System.out.println(
+                                    "Notes un dolor a l'estomac... Et queden "
+                                    + instruccionsPerMorir + " instruccions."
+                                );
+                        }
                 }
         }
 
@@ -392,23 +435,28 @@ public class joc {
 
         int numeroPorta = scanner.nextInt();
 
+        habitacio habitacioAnterior = jugador1.getHabitacioActual();
+
         jugador1.moure(numeroPorta - 1);
+
+        if (jugador1.getHabitacioActual() == habitacioAnterior) {
+
+                return comptadorMoviments;
+        }
 
         comptadorMoviments++;
 
+        if (comprobarMalien(jugador1, alien1)) {
+                return -1;
+        }
+
         if (comptadorMoviments % 2 == 0) {
 
-        alien1.moure(habitacions);
+                alien1.moure(habitacions);
 
-        if (comprobarMalien(jugador1, alien1)) {
-                return -1;
-        }
-
-        } else {
-
-        if (comprobarMalien(jugador1, alien1)) {
-                return -1;
-        }
+                if (comprobarMalien(jugador1, alien1)) {
+                        return -1;
+                }
         }
 
         if (companyia1.estaDespert()) {
@@ -416,14 +464,33 @@ public class joc {
                 companyia1.moure(habitacions);
         }
 
+        if (comprobarCompanyMalien(companyia1, alien1)) {
+                return -1;
+        }
+
         return comptadorMoviments;
         }
 
-    public void agafarObjecte(jugador jugador1) {
+    public void agafarObjecte(jugador jugador1, Company companyia1) {
 
         System.out.print("Escull un objecte: ");
 
         int numeroObjecte = scanner.nextInt();
+
+        objecte seleccionat =
+                jugador1.getHabitacioActual().obtenirObjecte(numeroObjecte);
+
+        if (seleccionat != null
+                && seleccionat.getNom().equalsIgnoreCase("Targeta del company")
+                && !companyia1.estaDespert()) {
+
+            System.out.println(
+                "El Company porta la targeta posada i dorm. "
+                + "Cal despertar-lo primer (Parlar)."
+            );
+
+            return;
+        }
 
         jugador1.agafarObjecte(numeroObjecte);
     }
@@ -447,7 +514,63 @@ public class joc {
 
                 int numeroObjecte = scanner.nextInt();
 
+                objecte seleccionat =
+                        jugador1.obtenirObjecteInventari(numeroObjecte);
+
                 jugador1.usarObjecte(numeroObjecte);
+
+                if (seleccionat != null
+                        && seleccionat.getNom().equalsIgnoreCase("Eina")
+                        && jugador1.getHabitacioActual() == alien1.getHabitacioActual()
+                        && instruccionsPerMorir < 0) {
+
+                        instruccionsPerMorir = 7;
+
+                        System.out.println();
+                        System.out.println("Has atacat el Malien amb l'eina.");
+                        System.out.println("Se't cola directament per la gola!");
+                        System.out.println("Et queden 7 instruccions.");
+                }
+        }
+
+        public void parlarAmbIHall(
+                jugador jugador1,
+                Alien alien1,
+                Ordinador ordinador1,
+                habitacio[] habitacions) {
+
+                System.out.println();
+                System.out.println("Que vols preguntar a iHall?");
+                System.out.println("1. On es el Malien?");
+                System.out.println("2. On es la llanterna?");
+                System.out.println("3. Obrir una porta");
+                System.out.print("Escull una opcio: ");
+
+                int opcio = scanner.nextInt();
+
+                if (opcio == 1) {
+
+                        ordinador1.dirOnEstaMalien(alien1);
+
+                } else if (opcio == 2) {
+
+                        ordinador1.dirOnEstaLlanterna(habitacions);
+
+                } else if (opcio == 3) {
+
+                        System.out.print("Quina porta vols que obri: ");
+
+                        int numeroPorta = scanner.nextInt();
+
+                        ordinador1.obrirPorta(
+                                jugador1.getHabitacioActual()
+                                        .obtenirPorta(numeroPorta - 1)
+                        );
+
+                } else {
+
+                        System.out.println("iHall: No t'he entes.");
+                }
         }
 
         public boolean comprobarMalien(jugador jugador1, Alien alien1) {
@@ -510,6 +633,28 @@ public class joc {
                 return false;
         }
 
+        public boolean comprobarCompanyMalien(Company companyia1, Alien alien1) {
+
+                if (!companyia1.estaDespert() || alien1.estaDistret()) {
+                        return false;
+                }
+
+                if (companyia1.getHabitacioActual() == alien1.getHabitacioActual()) {
+
+                        System.out.println();
+                        System.out.println("=================================");
+                        System.out.println("  EL MALIEN HA TROBAT EL COMPANY!");
+                        System.out.println("=================================");
+                        System.out.println();
+                        System.out.println("FI DE LA PARTIDA.");
+                        System.out.println();
+
+                        return true;
+                }
+
+                return false;
+        }
+
     public void parlar(
                 jugador jugador1,
                 Alien alien1,
@@ -523,7 +668,14 @@ public class joc {
         } else if (jugador1.getHabitacioActual() ==
                 companyia1.getHabitacioActual()) {
 
-                System.out.println("Company: Hola Bond!");
+                if (!companyia1.estaDespert()) {
+
+                        companyia1.despertar();
+
+                } else {
+
+                        System.out.println("Company: Hola Bond!");
+                }
 
         } else {
 

@@ -348,21 +348,13 @@ public class jugador {
         return inventari.comprovarObjecte("Donuts");
     }
 
+    public objecte obtenirObjecteInventari(int numeroObjecte) {
+        return inventari.obtenirObjecte(numeroObjecte);
+    }
+
     public void donarDonuts(Alien alien1) {
 
-        objecte donuts = null;
-
-        for (int i = 1; i <= 6; i++) {
-
-            objecte objecteActual = inventari.obtenirObjecte(i);
-
-            if (objecteActual != null &&
-                objecteActual.getNom().equalsIgnoreCase("Donuts")) {
-
-                donuts = objecteActual;
-                break;
-            }
-        }
+        objecte donuts = inventari.obtenirObjectePerNom("Donuts");
 
         if (donuts != null) {
 

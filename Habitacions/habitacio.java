@@ -68,6 +68,20 @@ public class habitacio {
         return objectes[numero - 1];
     }
 
+    public objecte obtenirObjectePerNom(String nom) {
+
+        for (int i = 0; i < objectes.length; i++) {
+
+            if (objectes[i] != null &&
+                    objectes[i].getNom().equalsIgnoreCase(nom)) {
+
+                return objectes[i];
+            }
+        }
+
+        return null;
+    }
+
     public void treureObjecte(objecte objecte) {
 
         for (int i = 0; i < objectes.length; i++) {
