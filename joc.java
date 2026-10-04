@@ -451,6 +451,50 @@ public class joc {
         }
         }
 
+        public boolean comprobarMalien(jugador jugador1, Alien alien1) {
+
+        if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
+
+                System.out.println();
+                System.out.println("=================================");
+                System.out.println("     T'HA PILLAT EL MALIEN!");
+                System.out.println("=================================");
+                System.out.println();
+
+                System.out.println("Tens donuts?");
+                System.out.println("1. Si");
+                System.out.println("2. No");
+                System.out.print("Escull una opcio: ");
+
+                int opcio = scanner.nextInt();
+
+                if (opcio == 1) {
+
+                System.out.println();
+                System.out.println("Li dones els donuts al Malien.");
+                System.out.println("El Malien es distreu menjant-los.");
+                System.out.println("Has pogut escapar!");
+                System.out.println();
+
+                alien1.distreure();
+
+                return false;
+
+                } else {
+
+                System.out.println();
+                System.out.println("No tens donuts.");
+                System.out.println("El Malien t'ha atrapat.");
+                System.out.println("HAS MORT.");
+                System.out.println();
+
+                return true;
+                }
+        }
+
+        return false;
+        }
+
     public void parlar(
                 jugador jugador1,
                 Alien alien1,
