@@ -6,12 +6,14 @@ public class Porta {
     private habitacio habitacio1;
     private habitacio habitacio2;
     private boolean oberta;
+    private boolean necessitaTargeta;
 
-    public Porta(String nom, habitacio habitacio1, habitacio habitacio2) {
+    public Porta(String nom, habitacio habitacio1, habitacio habitacio2, boolean necessitaTargeta) {
         this.nom = nom;
         this.habitacio1 = habitacio1;
         this.habitacio2 = habitacio2;
         this.oberta = false;
+        this.necessitaTargeta = necessitaTargeta;
     }
 
     public String getNom() {
@@ -25,6 +27,10 @@ public class Porta {
     public void obrir() {
         oberta = true;
         System.out.println("La porta s'ha obert.");
+    }
+
+    public boolean necessitaTargeta() {
+        return necessitaTargeta;
     }
 
     public void tancar() {

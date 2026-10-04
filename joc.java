@@ -115,55 +115,65 @@ public class joc {
         Porta porta1 = new Porta(
                 "Porta Tallers - Oficines",
                 habitacions[0],
-                habitacions[1]
+                habitacions[1],
+                false
         );
 
         Porta porta2 = new Porta(
                 "Porta Oficines - Banys",
                 habitacions[1],
                 habitacions[3]
+                ,true
         );
 
         Porta porta3 = new Porta(
                 "Porta Vestuari - Comandament",
                 habitacions[2],
-                habitacions[6]
+                habitacions[6],
+                false
         );
 
         Porta porta4 = new Porta(
                 "Porta Comandament - Banys",
                 habitacions[6],
-                habitacions[3]
+                habitacions[3],
+                true
         );
 
         Porta porta5 = new Porta(
                 "Porta Vestuari - Cuina",
                 habitacions[2],
-                habitacions[4]
+                habitacions[4],
+                false
         );
 
         Porta porta6 = new Porta(
                 "Porta Banys - Dormitori",
                 habitacions[3],
-                habitacions[5]
+                habitacions[5],
+                true
         );
 
         Porta porta7 = new Porta(
                 "Porta Cuina - Menjador",
                 habitacions[4],
-                habitacions[7]
+                habitacions[7],
+                false
+
         );
 
         Porta porta8 = new Porta(
                 "Porta Dormitori - Menjador",
                 habitacions[5],
-                habitacions[7]
+                habitacions[7],
+                false
         );
 
         Porta porta9 = new Porta(
                 "Porta Menjador - Sala Exterior",
                 habitacions[7],
-                habitacions[8]
+                habitacions[8],
+                true
         );
 
         Porta[] portes = {
@@ -212,14 +222,16 @@ public class joc {
 
         habitacions[8].afegirPorta(portes[8]);
 
-        obrirPortes(portes);
+        obrirPortesInicials(portes);
     }
 
-    public void obrirPortes(Porta[] portes) {
+    public void obrirPortesInicials(Porta[] portes) {
 
-        for (int i = 0; i < portes.length; i++) {
-             portes[i].obrir();
-        }
+        portes[0].obrir();
+        portes[4].obrir();
+        portes[5].obrir();
+        portes[6].obrir();
+        portes[7].obrir();
     }
 
     public objecte[] crearObjectes() {
