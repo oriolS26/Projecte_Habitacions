@@ -1,15 +1,21 @@
 package Habitacions;
 
+import Objectes.objecte;
+
+
+
 public class habitacio {
 
     protected String nom;
     protected String descripcio;
     protected Porta[] portes;
+    protected objecte[] objectes;
 
     public habitacio(String nom, String descripcio) {
         this.nom = nom;
         this.descripcio = descripcio;
         this.portes = new Porta[4];
+        this.objectes = new objecte[6];
     }
 
     public String getNom() {
@@ -38,6 +44,45 @@ public class habitacio {
         }
 
         return portes[numero];
+    }
+
+    public void afegirObjecte(objecte objecte) {
+
+    for (int i = 0; i < objectes.length; i++) {
+
+            if (objectes[i] == null) {
+
+                objectes[i] = objecte;
+                objecte.deixar();
+
+                return;
+            }
+        }
+
+        System.out.println("No hi ha espai per aquest objecte.");
+    }
+
+    public objecte obtenirObjecte(int numero) {
+
+        if (numero < 1 || numero > objectes.length) {
+
+            return null;
+        }
+
+        return objectes[numero - 1];
+    }
+
+    public void treureObjecte(objecte objecte) {
+
+        for (int i = 0; i < objectes.length; i++) {
+
+            if (objectes[i] == objecte) {
+
+                objectes[i] = null;
+
+                return;
+            }
+        }
     }
 
     public void mostrarDeescripcio() {
@@ -71,6 +116,29 @@ public class habitacio {
                     + estat
                 );
             }
+        }
+
+        System.out.println();
+
+        System.out.println("Objectes:");
+
+        boolean hiHaObjectes = false;
+
+        for (int i = 0; i < objectes.length; i++) {
+
+            if (objectes[i] != null) {
+
+                System.out.println(
+                    (i + 1) + ". " + objectes[i].getNom()
+                );
+
+                hiHaObjectes = true;
+            }
+        }
+
+        if (!hiHaObjectes) {
+
+            System.out.println("No hi ha objectes.");
         }
 
         System.out.println();
