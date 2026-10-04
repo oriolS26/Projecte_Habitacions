@@ -1,14 +1,16 @@
 import Habitacions.Porta;
 import Habitacions.habitacio;
-
+import Objectes.objecte;
 
 public class jugador {
     private String nom;
     private habitacio habitacioActual;
+    private inventari inventari;
 
     public jugador(String nom, habitacio habitacioActual) {
         this.nom = nom;
         this.habitacioActual = habitacioActual;
+        this.inventari = new inventari();
     }
 
     public String getNom() {
@@ -39,17 +41,69 @@ public class jugador {
 
             if (portaEscollida.estaOberta()) {
 
-                habitacio novaHabitacio = 
-                    portaEscollida.obtenirAltraHabitacio(habitacioActual);
-
+                habitacio novaHabitacio = portaEscollida.obtenirAltraHabitacio(habitacioActual);
                 habitacioActual = novaHabitacio;
             
-            System.out.println();
-            System.out.println( "Has anat a: " + habitacioActual.getNom());
-                } else {
+                System.out.println();
+                System.out.println( "Has anat a: " + habitacioActual.getNom());
 
+            } else {
                 System.out.println("La porta esta tancada.");
-                }
             }
+        }
+    }
+
+    public void agafarObjecte(int numeroObjecte) {
+
+        objecte objecte = habitacioActual.obtenirObjecte(numeroObjecte);
+
+        if (objecte == null) {
+
+            System.out.println("Aquest objecte no existeix en aquesta habitacio.");
+
+        } else {
+            habitacioActual.treureObjecte(objecte);
+            inventari.afegirObjecte(objecte);
+        }
+    }
+
+    public void deixarObjecte(int numeroObjecte) {
+
+        objecte objecte =
+                inventari.obtenirObjecte(numeroObjecte);
+
+        if (objecte == null) {
+
+            System.out.println(
+                "Aquest objecte no existeix a l'inventari."
+            );
+
+        } else {
+
+            inventari.treureObjecte(objecte);
+
+            habitacioActual.afegirObjecte(objecte);
+        }
+    }
+
+    public void usarObjecte(int numeroObjecte) {
+
+        objecte objecte =
+                inventari.obtenirObjecte(numeroObjecte);
+
+        if (objecte == null) {
+
+            System.out.println(
+                "Aquest objecte no existeix a l'inventari."
+            );
+
+        } else {
+
+            objecte.usar();
+        }
+    }
+
+    public void mostrarInventari() {
+        inventari.mostrarInventari();
     }
 }
