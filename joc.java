@@ -299,7 +299,7 @@ public class joc {
 
         return new Alien(
                 "Malien",
-                habitacions[4]
+                habitacions[8]
         );
     }
 
@@ -343,6 +343,9 @@ public class joc {
                                 companyia1,
                                 habitacions
                         );
+                if (comptadorMoviments == -1) {
+                continuar = false;
+                }
 
                 } else if (opcio == 2) {
 
@@ -378,12 +381,12 @@ public class joc {
         System.out.println("Has sortit del joc.");
     }
 
-    public int moureJugador(
-        jugador jugador1,
-        int comptadorMoviments,
-        Alien alien1,
-        Company companyia1,
-        habitacio[] habitacions) {
+        public int moureJugador(
+                jugador jugador1,
+                int comptadorMoviments,
+                Alien alien1,
+                Company companyia1,
+                habitacio[] habitacions) {
 
         System.out.print("Escull una porta: ");
 
@@ -391,20 +394,28 @@ public class joc {
 
         jugador1.moure(numeroPorta - 1);
 
+        if (comprobarMalien(jugador1, alien1)) {
+                return -1;
+        }
+
         comptadorMoviments++;
 
         if (comptadorMoviments % 2 == 0) {
 
                 alien1.moure(habitacions);
+
+                if (comprobarMalien(jugador1, alien1)) {
+                return -1;
+                }
         }
 
         if (companyia1.estaDespert()) {
 
-        companyia1.moure(habitacions);
-}
+                companyia1.moure(habitacions);
+        }
 
         return comptadorMoviments;
-    }
+        }
 
     public void agafarObjecte(jugador jugador1) {
 
@@ -461,7 +472,10 @@ public class joc {
                 System.out.println("=================================");
                 System.out.println();
 
-                System.out.println("Tens donuts?");
+                if (jugador1.teDonuts()) {
+
+                System.out.println("Tens donuts.");
+                System.out.println("Vols donar-li els donuts al Malien?");
                 System.out.println("1. Si");
                 System.out.println("2. No");
                 System.out.print("Escull una opcio: ");
@@ -470,19 +484,29 @@ public class joc {
 
                 if (opcio == 1) {
 
-                System.out.println();
-                System.out.println("Li dones els donuts al Malien.");
-                System.out.println("El Malien es distreu menjant-los.");
-                System.out.println("Has pogut escapar!");
-                System.out.println();
+                        jugador1.donarDonuts();
 
-                alien1.distreure();
+                        alien1.distreure();
 
-                return false;
+                        System.out.println();
+                        System.out.println("El Malien s'ha distret amb els donuts.");
+                        System.out.println("Has pogut escapar!");
+                        System.out.println();
+
+                        return false;
 
                 } else {
 
-                System.out.println();
+                        System.out.println();
+                        System.out.println("El Malien t'ha atrapat.");
+                        System.out.println("HAS MORT.");
+                        System.out.println();
+
+                        return true;
+                }
+
+                } else {
+
                 System.out.println("No tens donuts.");
                 System.out.println("El Malien t'ha atrapat.");
                 System.out.println("HAS MORT.");

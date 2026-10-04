@@ -343,4 +343,21 @@ public class jugador {
     public void mostrarInventari() {
         inventari.mostrarInventari();
     }
+
+    public boolean teDonuts() {
+
+    return inventari.comprovarObjecte("Donuts");
+}
+
+    public void donarDonuts() {
+
+        objecte donuts = inventari.obtenirObjectePerNom("Donuts");
+
+        if (donuts != null) {
+
+            inventari.treureObjecte(donuts);
+
+            System.out.println("Has donat els donuts al Malien.");
+        }
+    }
 }
