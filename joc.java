@@ -299,7 +299,7 @@ public class joc {
 
         return new Alien(
                 "Malien",
-                habitacions[8]
+                habitacions[7]
         );
     }
 
@@ -307,7 +307,7 @@ public class joc {
 
         return new Company(
                 "Company",
-                habitacions[5]
+                habitacions[4]
         );
     }
 
@@ -394,19 +394,21 @@ public class joc {
 
         jugador1.moure(numeroPorta - 1);
 
-        if (comprobarMalien(jugador1, alien1)) {
-                return -1;
-        }
-
         comptadorMoviments++;
 
         if (comptadorMoviments % 2 == 0) {
 
-                alien1.moure(habitacions);
+        alien1.moure(habitacions);
 
-                if (comprobarMalien(jugador1, alien1)) {
+        if (comprobarMalien(jugador1, alien1)) {
                 return -1;
-                }
+        }
+
+        } else {
+
+        if (comprobarMalien(jugador1, alien1)) {
+                return -1;
+        }
         }
 
         if (companyia1.estaDespert()) {
@@ -439,84 +441,73 @@ public class joc {
 
         public void usarObjecte(jugador jugador1, Alien alien1) {
 
-        jugador1.mostrarInventari();
+                jugador1.mostrarInventari();
 
-        System.out.print("Escull un objecte: ");
+                System.out.print("Escull un objecte: ");
 
-        int numeroObjecte = scanner.nextInt();
-
-        if (numeroObjecte == 6) {
-
-                if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
+                int numeroObjecte = scanner.nextInt();
 
                 jugador1.usarObjecte(numeroObjecte);
-
-                alien1.distreure(); } else {
-
-                jugador1.usarObjecte(numeroObjecte);
-                }
-
-        } else {
-
-                jugador1.usarObjecte(numeroObjecte);
-        }
         }
 
         public boolean comprobarMalien(jugador jugador1, Alien alien1) {
 
-        if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
-
-                System.out.println();
-                System.out.println("=================================");
-                System.out.println("     T'HA PILLAT EL MALIEN!");
-                System.out.println("=================================");
-                System.out.println();
-
-                if (jugador1.teDonuts()) {
-
-                System.out.println("Tens donuts.");
-                System.out.println("Vols donar-li els donuts al Malien?");
-                System.out.println("1. Si");
-                System.out.println("2. No");
-                System.out.print("Escull una opcio: ");
-
-                int opcio = scanner.nextInt();
-
-                if (opcio == 1) {
-
-                        jugador1.donarDonuts();
-
-                        alien1.distreure();
-
-                        System.out.println();
-                        System.out.println("El Malien s'ha distret amb els donuts.");
-                        System.out.println("Has pogut escapar!");
-                        System.out.println();
-
+                if (alien1.estaDistret()) {
                         return false;
+                }
 
-                } else {
+                if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
 
                         System.out.println();
+                        System.out.println("=================================");
+                        System.out.println("     T'HA PILLAT EL MALIEN!");
+                        System.out.println("=================================");
+                        System.out.println();
+
+                        if (jugador1.teDonuts()) {
+
+                        System.out.println("Tens donuts.");
+                        System.out.println("Vols donar-li els donuts al Malien?");
+                        System.out.println("1. Si");
+                        System.out.println("2. No");
+                        System.out.print("Escull una opcio: ");
+
+                        int opcio = scanner.nextInt();
+
+                        if (opcio == 1) {
+
+                                jugador1.donarDonuts(alien1);
+
+                                System.out.println();
+                                System.out.println("Has pogut escapar!");
+                                System.out.println();
+
+                                return false;
+
+                        } else {
+
+                                System.out.println();
+                                System.out.println("No li has donat els donuts.");
+                                System.out.println("El Malien t'ha atrapat.");
+                                System.out.println("HAS MORT.");
+                                System.out.println();
+
+                                return true;
+                        }
+
+                        } else {
+
+                        System.out.println();
+                        System.out.println("No tens donuts.");
                         System.out.println("El Malien t'ha atrapat.");
                         System.out.println("HAS MORT.");
                         System.out.println();
 
                         return true;
+                        }
                 }
 
-                } else {
-
-                System.out.println("No tens donuts.");
-                System.out.println("El Malien t'ha atrapat.");
-                System.out.println("HAS MORT.");
-                System.out.println();
-
-                return true;
-                }
-        }
-
-        return false;
+                return false;
         }
 
     public void parlar(

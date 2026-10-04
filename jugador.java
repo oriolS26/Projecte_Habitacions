@@ -345,17 +345,30 @@ public class jugador {
     }
 
     public boolean teDonuts() {
+        return inventari.comprovarObjecte("Donuts");
+    }
 
-    return inventari.comprovarObjecte("Donuts");
-}
+    public void donarDonuts(Alien alien1) {
 
-    public void donarDonuts() {
+        objecte donuts = null;
 
-        objecte donuts = inventari.obtenirObjectePerNom("Donuts");
+        for (int i = 1; i <= 6; i++) {
+
+            objecte objecteActual = inventari.obtenirObjecte(i);
+
+            if (objecteActual != null &&
+                objecteActual.getNom().equalsIgnoreCase("Donuts")) {
+
+                donuts = objecteActual;
+                break;
+            }
+        }
 
         if (donuts != null) {
 
             inventari.treureObjecte(donuts);
+
+            alien1.distreure();
 
             System.out.println("Has donat els donuts al Malien.");
         }

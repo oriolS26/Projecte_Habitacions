@@ -8,6 +8,7 @@ public class Alien {
     protected habitacio habitacioActual;
     protected int moviments;
     protected boolean distret;
+    protected int movimentsDistret;
 
     public Alien(String nom, habitacio habitacioActual) {
 
@@ -15,6 +16,7 @@ public class Alien {
         this.habitacioActual = habitacioActual;
         this.moviments = 0;
         this.distret = false;
+        this.movimentsDistret = 0;
     }
 
     public String getNom() {
@@ -40,7 +42,7 @@ public class Alien {
     public void distreure() {
 
         distret = true;
-        moviments = 2;
+        movimentsDistret = 2;
 
         System.out.println(
             "Malien s'ha distret amb els donuts."
@@ -55,20 +57,15 @@ public class Alien {
 
         if (distret) {
 
-            moviments--;
+            movimentsDistret--;
 
-            System.out.println(
-                "Malien esta distret. Li queden "
-                + moviments
-                + " moviments sense moure's."
-            );
+            System.out.println("Malien esta distret. No es mou.");
 
-            if (moviments <= 0) {
+            if (movimentsDistret <= 0) {
+
                 distret = false;
 
-                System.out.println(
-                    "Malien ja no esta distret."
-                );
+                System.out.println("Malien ja no esta distret.");
             }
 
             return;
@@ -89,13 +86,17 @@ public class Alien {
         }
 
         if (quantitatPortes == 0) {
+
+            System.out.println(
+                "Malien no te cap porta oberta per moure's."
+            );
+
             return;
         }
 
         Random random = new Random();
 
-        int portaEscollida =
-                random.nextInt(quantitatPortes);
+        int portaEscollida = random.nextInt(quantitatPortes);
 
         habitacio novaHabitacio =
                 portesDisponibles[portaEscollida]
@@ -105,10 +106,14 @@ public class Alien {
 
             habitacioActual = novaHabitacio;
 
+            moviments++;
+
+            System.out.println();
             System.out.println(
                 "Malien s'ha mogut a: "
                 + habitacioActual.getNom()
             );
+            System.out.println();
         }
     }
 }
