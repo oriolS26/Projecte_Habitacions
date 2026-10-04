@@ -40,6 +40,7 @@ public class Alien {
     public void distreure() {
 
         distret = true;
+        moviments = 2;
 
         System.out.println(
             "Malien s'ha distret amb els donuts."
@@ -53,6 +54,23 @@ public class Alien {
     public void moure(habitacio[] habitacions) {
 
         if (distret) {
+
+            moviments--;
+
+            System.out.println(
+                "Malien esta distret. Li queden "
+                + moviments
+                + " moviments sense moure's."
+            );
+
+            if (moviments <= 0) {
+                distret = false;
+
+                System.out.println(
+                    "Malien ja no esta distret."
+                );
+            }
+
             return;
         }
 
