@@ -51,10 +51,7 @@ public class habitacio {
     for (int i = 0; i < objectes.length; i++) {
 
             if (objectes[i] == null) {
-
                 objectes[i] = objecte;
-                objecte.deixar();
-
                 return;
             }
         }
@@ -65,7 +62,6 @@ public class habitacio {
     public objecte obtenirObjecte(int numero) {
 
         if (numero < 1 || numero > objectes.length) {
-
             return null;
         }
 
@@ -75,14 +71,36 @@ public class habitacio {
     public void treureObjecte(objecte objecte) {
 
         for (int i = 0; i < objectes.length; i++) {
-
             if (objectes[i] == objecte) {
-
                 objectes[i] = null;
-
                 return;
             }
         }
+    }
+
+    public void mostrarObjectes() {
+
+        boolean hiHaObjectes = false;
+
+        System.out.println("Objectes de l'habitacio:");
+
+        for (int i = 0; i < objectes.length; i++) {
+
+            if (objectes[i] != null) {
+
+                System.out.println(
+                    (i + 1) + ". " + objectes[i].getNom()
+                );
+
+                hiHaObjectes = true;
+            }
+        }
+
+        if (!hiHaObjectes) {
+            System.out.println("No hi ha objectes.");
+        }
+
+        System.out.println();
     }
 
     public void mostrarDeescripcio() {
@@ -117,30 +135,8 @@ public class habitacio {
                 );
             }
         }
-
         System.out.println();
 
-        System.out.println("Objectes:");
-
-        boolean hiHaObjectes = false;
-
-        for (int i = 0; i < objectes.length; i++) {
-
-            if (objectes[i] != null) {
-
-                System.out.println(
-                    (i + 1) + ". " + objectes[i].getNom()
-                );
-
-                hiHaObjectes = true;
-            }
-        }
-
-        if (!hiHaObjectes) {
-
-            System.out.println("No hi ha objectes.");
-        }
-
-        System.out.println();
+        mostrarObjectes();
     }
 }

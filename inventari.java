@@ -9,7 +9,7 @@ public class inventari {
         objectes = new objecte[6];
     }
 
-    public void afegirObjecte(objecte objecte) {
+    public boolean afegirObjecte(objecte objecte) {
 
         for (int i = 0; i < objectes.length; i++) {
 
@@ -23,11 +23,12 @@ public class inventari {
                     "Has agafat: " + objecte.getNom()
                 );
 
-                return;
+                return true;
             }
         }
 
         System.out.println("L'inventari esta ple.");
+        return false;
     }
 
     public void treureObjecte(objecte objecte) {

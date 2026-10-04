@@ -36,6 +36,7 @@ public class joc {
 
     public void mostrarMenu() {
         System.out.println();
+        System.out.println("Opcions:");
         System.out.println("1. Moure");
         System.out.println("2. Agafar objecte");
         System.out.println("3. Deixar objecte");
@@ -265,20 +266,12 @@ public class joc {
         return objectes;
     }
 
-    public void assignarObjectes(
-        habitacio[] habitacions,
-        objecte[] objectes) {
-
+    public void assignarObjectes(habitacio[] habitacions, objecte[] objectes) {
         habitacions[0].afegirObjecte(objectes[0]);
-
         habitacions[0].afegirObjecte(objectes[1]);
-
         habitacions[2].afegirObjecte(objectes[2]);
-
         habitacions[1].afegirObjecte(objectes[3]);
-
         habitacions[5].afegirObjecte(objectes[4]);
-
         habitacions[4].afegirObjecte(objectes[5]);
     }
 

@@ -62,8 +62,11 @@ public class jugador {
             System.out.println("Aquest objecte no existeix en aquesta habitacio.");
 
         } else {
-            habitacioActual.treureObjecte(objecte);
-            inventari.afegirObjecte(objecte);
+            boolean afegit = inventari.afegirObjecte(objecte);
+
+            if (afegit) {
+                habitacioActual.treureObjecte(objecte);
+            }
         }
     }
 
