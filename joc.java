@@ -1,6 +1,6 @@
-import java.util.Scanner;
 import Habitacions.Porta;
 import Habitacions.habitacio;
+import java.util.Scanner;
 
 public class joc {
     public static Scanner scanner = new Scanner(System.in);
@@ -54,8 +54,6 @@ public class joc {
                 "Zona d'acces als propulsors."
         );
 
-
-        // CREAR PORTES
 
         Porta porta1 = new Porta(
                 "Porta Tallers - Oficines",
@@ -158,6 +156,30 @@ public class joc {
                 dormitori
         );
 
+        Alien alien1 = new Alien(
+                "Malien",
+                cuina
+        );
+
+        Company companyia1 = new Company(
+                "Company",
+                dormitori
+        );
+
+        habitacio[] habitacions = {
+                tallers,
+                oficines,
+                vestuari,
+                banys,
+                cuina,
+                dormitori,
+                comandament,
+                menjador,
+                salaSortida
+        };
+
+        int comptadorMoviments = 0;
+
         boolean continuar = true;
 
         while (continuar) {
@@ -165,6 +187,8 @@ public class joc {
             jugador1.getHabitacioActual().mostrarDeescripcio();
 
             System.out.println("0. Sortir del joc");
+            System.out.println("9. Parlar");
+
             System.out.print("Escull una porta: ");
 
             int opcio = scanner.nextInt();
@@ -173,9 +197,30 @@ public class joc {
 
                 continuar = false;
 
+            } else if (opcio == 9) {
+
+                if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
+
+                    System.out.println("Malien: Grrrrr...");
+
+                } else if (jugador1.getHabitacioActual() == companyia1.getHabitacioActual()) {
+
+                    System.out.println("Company: Hola Bond!");
+
+                } else {
+
+                    System.out.println("No hi ha cap personatge en aquesta habitacio.");
+                }
+
             } else {
 
                 jugador1.moure(opcio - 1);
+
+                comptadorMoviments++;
+
+                if (comptadorMoviments % 2 == 0) {
+                    alien1.moure(habitacions);
+                }
             }
         }
 
