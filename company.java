@@ -1,3 +1,4 @@
+import Habitacions.Porta;
 import Habitacions.habitacio;
 import java.util.Random;
 
@@ -53,12 +54,42 @@ public class Company {
             return;
         }
 
+        Porta[] portesDisponibles = new Porta[4];
+        int quantitatPortes = 0;
+
+        for (int i = 0; i < 4; i++) {
+
+            Porta porta = habitacioActual.obtenirPorta(i);
+
+            if (porta != null && porta.estaOberta()) {
+
+                portesDisponibles[quantitatPortes] = porta;
+                quantitatPortes++;
+            }
+        }
+
+        if (quantitatPortes == 0) {
+            return;
+        }
+
         Random random = new Random();
 
-        habitacio novaHabitacio =
-                habitacions[random.nextInt(habitacions.length)];
+        int portaEscollida =
+                random.nextInt(quantitatPortes);
 
-        habitacioActual = novaHabitacio;
+        habitacio novaHabitacio =
+                portesDisponibles[portaEscollida]
+                        .obtenirAltraHabitacio(habitacioActual);
+
+        if (novaHabitacio != null) {
+
+            habitacioActual = novaHabitacio;
+
+            System.out.println(
+                nom + " s'ha mogut a: "
+                + habitacioActual.getNom()
+            );
+        }
     }
 
     public void agafarDonuts() {
