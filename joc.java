@@ -1,7 +1,7 @@
 import Habitacions.Porta;
 import Habitacions.habitacio;
-import java.util.Scanner;
 import Objectes.objecte;
+import java.util.Scanner;
 
 public class joc {
     public static Scanner scanner = new Scanner(System.in);
@@ -340,6 +340,7 @@ public class joc {
                                 jugador1,
                                 comptadorMoviments,
                                 alien1,
+                                companyia1,
                                 habitacions
                         );
 
@@ -353,7 +354,7 @@ public class joc {
 
                 } else if (opcio == 4) {
 
-                usarObjecte(jugador1);
+                usarObjecte(jugador1, alien1);
 
                 } else if (opcio == 5) {
 
@@ -381,6 +382,7 @@ public class joc {
         jugador jugador1,
         int comptadorMoviments,
         Alien alien1,
+        Company companyia1,
         habitacio[] habitacions) {
 
         System.out.print("Escull una porta: ");
@@ -395,6 +397,11 @@ public class joc {
 
                 alien1.moure(habitacions);
         }
+
+        if (companyia1.estaDespert()) {
+
+        companyia1.moure(habitacions);
+}
 
         return comptadorMoviments;
     }
@@ -419,7 +426,7 @@ public class joc {
         jugador1.deixarObjecte(numeroObjecte);
     }
 
-    public void usarObjecte(jugador jugador1) {
+        public void usarObjecte(jugador jugador1, Alien alien1) {
 
         jugador1.mostrarInventari();
 
@@ -427,8 +434,22 @@ public class joc {
 
         int numeroObjecte = scanner.nextInt();
 
-        jugador1.usarObjecte(numeroObjecte);
-    }
+        if (numeroObjecte == 6) {
+
+                if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
+
+                jugador1.usarObjecte(numeroObjecte);
+
+                alien1.distreure(); } else {
+
+                jugador1.usarObjecte(numeroObjecte);
+                }
+
+        } else {
+
+                jugador1.usarObjecte(numeroObjecte);
+        }
+        }
 
     public void parlar(
                 jugador jugador1,
