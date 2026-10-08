@@ -26,7 +26,6 @@ public class Porta {
 
     public void obrir() {
         oberta = true;
-        System.out.println("La porta s'ha obert.");
     }
 
     public boolean necessitaTargeta() {

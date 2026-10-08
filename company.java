@@ -69,18 +69,13 @@ public class Company {
 
         int portaEscollida = random.nextInt(quantitatPortes);
 
-        habitacio novaHabitacio =
-                portesDisponibles[portaEscollida]
-                        .obtenirAltraHabitacio(habitacioActual);
+        habitacio novaHabitacio = portesDisponibles[portaEscollida].obtenirAltraHabitacio(habitacioActual);
 
         if (novaHabitacio != null) {
 
             habitacioActual = novaHabitacio;
 
-            System.out.println(
-                    "El Company s'ha mogut a: "
-                    + habitacioActual.getNom()
-            );
+            System.out.println("El Company s'ha mogut a: "+ habitacioActual.getNom());
 
             menjarDonuts();
         }

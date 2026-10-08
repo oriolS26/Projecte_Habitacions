@@ -12,6 +12,7 @@ public class joc {
         inici.start();
     }
     public void start() {
+        mostrarHistoria();
         habitacio[] habitacions = crearHabitacions();
 
         Porta[] portes = crearPortes(habitacions);
@@ -30,13 +31,64 @@ public class joc {
 
         Ordinador ordinador1 = new Ordinador("iHall");
 
-        iniciarPartida(
-                jugador1,
-                alien1,
-                companyia1,
-                ordinador1,
-                habitacions
-        );
+        iniciarPartida(jugador1, alien1, companyia1, ordinador1, habitacions);
+    }
+
+    public void mostrarHistoria() {
+
+        System.out.println();
+
+        escriureLent("ANY 2120 D.C.", 30);
+        System.out.println();
+
+        escriureLent("La nau PiaXXII explora l'espai inhòspit en direcció al planeta SUMMEM on es creu que hi poden haver les condicions idònies per arrelar una nova vida, que ja no és possible dur a terme en el planeta Pia. " + "Després d'un llarg període d'hivernació provocada pel llarg viatge al planeta SUMMEM, el cap de la tripulació de la PiaXXII es desperta del son induït. " + "L'ordinador de la nau iHall ha detectat una anomalia en el sistema i necessita de la intervenció del cap de la tripulació per resoldre'l.", 5);
+
+        System.out.println();
+
+        escriureLent("- Que tal ha dormit capità Bond? Em sap greu destorbar-lo però he detectat una anomalia a la nau. Sembla ser que se'ns gira feina.", 5);
+        System.out.println();
+        escriureLent("- Coi de ferralla \"intel·ligent\"! - En Bond està altament irritat ja que el somni no podia ser d'allò més excitant i realista... Espero que hagi estat indispensable haver-me destorbat el son! Sinó prepara't perquè et programi unes quantes sessions de Treball cooperatiu amb un pedagog inspirat...",5);
+        System.out.println();
+        escriureLent("- Li garanteixo, capità Bond, que no és una falsa alarma. No m'arriscaria a patir un càstig similar...",5);
+        System.out.println();
+        escriureLent("- Està bé, iHall - murmurà el capità ja més despert i calmat - donem l'informe de la situació i anem per feina! Que vull tornar a agafar el son.",5);
+        System.out.println();
+        escriureLent("iHall procedeix a explicar detalladament la situació al capità. Resulta que hem xocat amb un petit aeròlit que ha provocat petits danys al sistema de propulsió de la nau que requereixen de la intervenció humana.",5);
+        System.out.println();
+        escriureLent("Des dels dormitoris cal arribar a la zona de motors i propulsió. Les diferents zones estan unides per portes automàtiques que cal obrir amb la targeta personal de cada un dels tripulants però en Bond no recorda on l'ha deixat. Sense la targeta, depèn al 100% de la comunicació amb iHall perquè li vagi obrint les portes entre zones.",5);
+        System.out.println();
+        escriureLent("Darrerament però iHall està un pel transposat i en moltes ocasions no fa cas a en Bond i el posa a prova donant-li pistes o indicacions falses. Potser pot intentar agafar alguna de les targetes dels companys o intentar buscar-la per la nau.",5);
+        System.out.println();
+        escriureLent("Per aconseguir reparar els motors, cal posar-se el vestit d'astronauta que està al vestuari. Sense ell no es podria sobreviure a l'exterior de la nau. Compte però que, revivint la famosa saga d'en Ridley Scott, tenim un Alien donant voltes per la nau.",5);
+        System.out.println();
+        escriureLent("Se'l coneix amb el nom de \"Malien\", i s'ha colat a la nau per intentar sabotejar la missió. En Malien només té un punt dèbil, li agraden els dònuts! Per tant, si ens trobem amb ell, potser serà l'única manera de poder-lo distreure perquè ens deixi tranquils.",5);
+        System.out.println();
+        escriureLent("Necessitarem una eina especial per poder reparar els motors. L'eina està al taller de la nau.",5);
+        System.out.println();
+        escriureLent("Un cop arreglem els propulsors del motor, haurem de córrer cap a la zona de la sala de comandaments per posar novament en marxa els motors.",5);
+        System.out.println();
+        escriureLent("Podrà en Bond amb en Malien? Podrà reparar els motors i aconseguir prosseguir la seva missió el PiaXXII cap a SUMMEM?",20);
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println("          COMENÇA L'AVENTURA");
+        System.out.println("========================================");
+        System.out.println();
+    }
+
+    public void escriureLent(String text, int velocitat) {
+
+        for (int i = 0; i < text.length(); i++) {
+
+                System.out.print(text.charAt(i));
+
+                try {
+                Thread.sleep(velocitat);
+                } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                }
+        }
+
+        System.out.println();
     }
 
     public void mostrarMenu() {
@@ -56,150 +108,55 @@ public class joc {
 
     public habitacio[] crearHabitacions() {
 
-        habitacio tallers = new habitacio(
-                "Tallers",
-                "Zona on es troben les eines de reparacio."
-        );
+        habitacio tallers = new habitacio("Tallers","Zona on es troben les eines de reparacio.");
 
-        habitacio oficines = new habitacio(
-                "Oficines",
-                "Zona d'oficines de la nau."
-        );
+        habitacio oficines = new habitacio("Oficines","Zona d'oficines de la nau.");
 
-        habitacio vestuari = new habitacio(
-                "Vestuari",
-                "Zona on es troba el vestit d'astronauta."
-        );
+        habitacio vestuari = new habitacio("Vestuari","Zona on es troba el vestit d'astronauta.");
 
-        habitacio banys = new habitacio(
-                "Banys",
-                "Banys de la nau."
-        );
+        habitacio banys = new habitacio("Banys","Banys de la nau.");
 
-        habitacio cuina = new habitacio(
-                "Cuina",
-                "Zona on es preparen els aliments."
-        );
+        habitacio cuina = new habitacio("Cuina","Zona on es preparen els aliments.");
 
-        habitacio dormitori = new habitacio(
-                "Dormitori",
-                "Zona on descansa la tripulacio."
-        );
+        habitacio dormitori = new habitacio("Dormitori","Zona on descansa la tripulacio.");
 
-        habitacio comandament = new habitacio(
-                "Comandament",
-                "Sala principal de control de la nau."
-        );
+        habitacio comandament = new habitacio("Comandament","Sala principal de control de la nau.");
 
-        habitacio menjador = new habitacio(
-                "Menjador",
-                "Zona on menja la tripulacio."
-        );
+        habitacio menjador = new habitacio("Menjador","Zona on menja la tripulacio.");
 
-        habitacio salaSortida = new habitacio(
-                "Sala Sortida Exterior",
-                "Zona d'acces als propulsors."
-        );
+        habitacio salaSortida = new habitacio("Sala Sortida Exterior","Zona d'acces als propulsors.");
 
-        habitacio[] habitacions = {
-                tallers,
-                oficines,
-                vestuari,
-                banys,
-                cuina,
-                dormitori,
-                comandament,
-                menjador,
-                salaSortida
-        };
+        habitacio[] habitacions = {tallers,oficines,vestuari,banys,cuina,dormitori,comandament,menjador,salaSortida};
 
         return habitacions;
     }
 
     public Porta[] crearPortes(habitacio[] habitacions) {
 
-        Porta porta1 = new Porta(
-                "Porta Tallers - Oficines",
-                habitacions[0],
-                habitacions[1],
-                false
-        );
+        Porta porta1 = new Porta("Porta Tallers - Oficines",habitacions[0],habitacions[1],false);
 
-        Porta porta2 = new Porta(
-                "Porta Oficines - Banys",
-                habitacions[1],
-                habitacions[3]
-                ,true
-        );
+        Porta porta2 = new Porta("Porta Oficines - Banys",habitacions[1],habitacions[3],false);
 
-        Porta porta3 = new Porta(
-                "Porta Vestuari - Comandament",
-                habitacions[2],
-                habitacions[6],
-                false
-        );
+        Porta porta3 = new Porta("Porta Vestuari - Comandament",habitacions[2],habitacions[6],false);
 
-        Porta porta4 = new Porta(
-                "Porta Comandament - Banys",
-                habitacions[6],
-                habitacions[3],
-                true
-        );
+        Porta porta4 = new Porta("Porta Comandament - Banys",habitacions[6],habitacions[3],false);
 
-        Porta porta5 = new Porta(
-                "Porta Vestuari - Cuina",
-                habitacions[2],
-                habitacions[4],
-                false
-        );
+        Porta porta5 = new Porta("Porta Vestuari - Cuina",habitacions[2],habitacions[4],false);
 
-        Porta porta6 = new Porta(
-                "Porta Banys - Dormitori",
-                habitacions[3],
-                habitacions[5],
-                true
-        );
+        Porta porta6 = new Porta("Porta Banys - Dormitori",habitacions[3],habitacions[5],false);
 
-        Porta porta7 = new Porta(
-                "Porta Cuina - Menjador",
-                habitacions[4],
-                habitacions[7],
-                false
+        Porta porta7 = new Porta("Porta Cuina - Menjador",habitacions[4],habitacions[7],false);
 
-        );
+        Porta porta8 = new Porta("Porta Dormitori - Menjador",habitacions[5],habitacions[7],false);
 
-        Porta porta8 = new Porta(
-                "Porta Dormitori - Menjador",
-                habitacions[5],
-                habitacions[7],
-                false
-        );
+        Porta porta9 = new Porta("Porta Menjador - Sala Exterior",habitacions[7],habitacions[8],true);
 
-        Porta porta9 = new Porta(
-                "Porta Menjador - Sala Exterior",
-                habitacions[7],
-                habitacions[8],
-                true
-        );
-
-        Porta[] portes = {
-                porta1,
-                porta2,
-                porta3,
-                porta4,
-                porta5,
-                porta6,
-                porta7,
-                porta8,
-                porta9
-        };
+        Porta[] portes = {porta1,porta2,porta3,porta4,porta5,porta6,porta7,porta8, porta9};
 
         return portes;
     }
 
-    public void assignarPortes(
-       habitacio[] habitacions,
-       Porta[] portes) {
+    public void assignarPortes(habitacio[] habitacions, Porta[] portes) {
 
         habitacions[0].afegirPorta(portes[0]);
 
@@ -234,6 +191,9 @@ public class joc {
     public void obrirPortesInicials(Porta[] portes) {
 
         portes[0].obrir();
+        portes[1].obrir();
+        portes[2].obrir();
+        portes[3].obrir();
         portes[4].obrir();
         portes[5].obrir();
         portes[6].obrir();
@@ -242,44 +202,19 @@ public class joc {
 
     public objecte[] crearObjectes() {
 
-        objecte eina = new objecte(
-                1,
-                "Eina"
-        );
+        objecte eina = new objecte(1, "Eina");
 
-        objecte llanterna = new objecte(
-                2,
-                "Llanterna"
-        );
+        objecte llanterna = new objecte(2, "Llanterna");
 
-        objecte vestit = new objecte(
-                3,
-                "Vestit espacial"
-        );
+        objecte vestit = new objecte(3, "Vestit espacial");
 
-        objecte targeta = new objecte(
-                4,
-                "Targeta identificadora"
-        );
+        objecte targeta = new objecte(4, "Targeta identificadora");
 
-        objecte targetaCompany = new objecte(
-                5,
-                "Targeta del company"
-        );
+        objecte targetaCompany = new objecte(5, "Targeta del company");
 
-        objecte donuts = new objecte(
-                6,
-                "Donuts"
-        );
+        objecte donuts = new objecte(6, "Donuts");
 
-        objecte[] objectes = {
-                eina,
-                llanterna,
-                vestit,
-                targeta,
-                targetaCompany,
-                donuts
-        };
+        objecte[] objectes = {eina, llanterna, vestit, targeta, targetaCompany, donuts};
 
         return objectes;
     }
@@ -295,34 +230,20 @@ public class joc {
 
     public jugador crearJugador(habitacio[] habitacions) {
 
-        return new jugador(
-                "Bond",
-                habitacions[5]
-        );
+        return new jugador("Bond", habitacions[5]);
     }
 
     public Alien crearAlien(habitacio[] habitacions) {
 
-        return new Alien(
-                "Malien",
-                habitacions[7]
-        );
+        return new Alien("Malien", habitacions[7]);
     }
 
     public Company crearCompany(habitacio[] habitacions) {
 
-        return new Company(
-                "Company",
-                habitacions[5]
-        );
+        return new Company("Company", habitacions[5]);
     }
 
-    public void iniciarPartida(
-        jugador jugador1,
-        Alien alien1,
-        Company companyia1,
-        Ordinador ordinador1,
-        habitacio[] habitacions) {
+    public void iniciarPartida(jugador jugador1, Alien alien1, Company companyia1, Ordinador ordinador1, habitacio[] habitacions) {
 
         int comptadorMoviments = 0;
 
@@ -330,13 +251,15 @@ public class joc {
 
         boolean continuar = true;
 
+
+
         while (continuar) {
 
                 jugador1.getHabitacioActual().mostrarDeescripcio();
 
                 mostrarMenu();
 
-                int opcio = scanner.nextInt();
+                int opcio = demanarNumero(0, 7);
 
                 boolean cuentaAtrasActiva = instruccionsPerMorir > 0;
 
@@ -346,14 +269,8 @@ public class joc {
 
                 } else if (opcio == 1) {
 
-                comptadorMoviments =
-                        moureJugador(
-                                jugador1,
-                                comptadorMoviments,
-                                alien1,
-                                companyia1,
-                                habitacions
-                        );
+                comptadorMoviments = moureJugador(jugador1, comptadorMoviments, alien1, companyia1, habitacions);
+                
                 if (comptadorMoviments == -1) {
                 continuar = false;
                 }
@@ -376,20 +293,11 @@ public class joc {
 
                 } else if (opcio == 6) {
 
-                parlarAmbIHall(
-                        jugador1,
-                        alien1,
-                        ordinador1,
-                        habitacions
-                );
+                parlarAmbIHall(jugador1, alien1, ordinador1, habitacions);
 
                 } else if (opcio == 7) {
 
-                parlar(
-                        jugador1,
-                        alien1,
-                        companyia1
-                );
+                parlar(jugador1, alien1, companyia1);
 
                 } else {
 
@@ -424,17 +332,42 @@ public class joc {
         System.out.println("Has sortit del joc.");
     }
 
-        public int moureJugador(
-                jugador jugador1,
-                int comptadorMoviments,
-                Alien alien1,
-                Company companyia1,
-                habitacio[] habitacions) {
+    public int demanarNumero(int minim, int maxim) {
+
+        int numero = 0;
+        boolean correcte = false;
+
+        while (!correcte) {
+
+                try {
+
+                numero = scanner.nextInt();
+
+                if (numero >= minim && numero <= maxim) {
+
+                        correcte = true;
+
+                } else {
+
+                        System.out.println("Has d'introduir un numero entre "
+                                + minim + " i " + maxim);
+                }
+
+                } catch (InputMismatchException e) {
+
+                System.out.println("Has d'introduir un numero.");
+                scanner.nextLine();
+                }
+        }
+
+        return numero;
+    }
+
+    public int moureJugador(jugador jugador1, int comptadorMoviments,Alien alien1,Company companyia1, habitacio[] habitacions) {
 
         System.out.print("Escull una porta: ");
 
         int numeroPorta = scanner.nextInt();
-
         habitacio habitacioAnterior = jugador1.getHabitacioActual();
 
         jugador1.moure(numeroPorta - 1);
@@ -454,9 +387,9 @@ public class joc {
 
                 alien1.moure(habitacions);
 
-                if (comprobarMalien(jugador1, alien1)) {
-                        return -1;
-                }
+        if (comprobarMalien(jugador1, alien1)) {
+                return -1;
+        }
         }
 
         if (companyia1.estaDespert()) {
@@ -469,7 +402,7 @@ public class joc {
         }
 
         return comptadorMoviments;
-        }
+    }
 
     public void agafarObjecte(jugador jugador1, Company companyia1) {
 
@@ -477,17 +410,13 @@ public class joc {
 
         int numeroObjecte = scanner.nextInt();
 
-        objecte seleccionat =
-                jugador1.getHabitacioActual().obtenirObjecte(numeroObjecte);
+        objecte seleccionat = jugador1.getHabitacioActual().obtenirObjecte(numeroObjecte);
 
         if (seleccionat != null
                 && seleccionat.getNom().equalsIgnoreCase("Targeta del company")
                 && !companyia1.estaDespert()) {
 
-            System.out.println(
-                "El Company porta la targeta posada i dorm. "
-                + "Cal despertar-lo primer (Parlar)."
-            );
+            System.out.println("El Company porta la targeta posada i dorm. " + "Cal despertar-lo primer (Parlar).");
 
             return;
         }
@@ -514,8 +443,7 @@ public class joc {
 
                 int numeroObjecte = scanner.nextInt();
 
-                objecte seleccionat =
-                        jugador1.obtenirObjecteInventari(numeroObjecte);
+                objecte seleccionat = jugador1.obtenirObjecteInventari(numeroObjecte);
 
                 jugador1.usarObjecte(numeroObjecte);
 
@@ -562,10 +490,7 @@ public class joc {
 
                         int numeroPorta = scanner.nextInt();
 
-                        ordinador1.obrirPorta(
-                                jugador1.getHabitacioActual()
-                                        .obtenirPorta(numeroPorta - 1)
-                        );
+                        ordinador1.obrirPorta(jugador1.getHabitacioActual().obtenirPorta(numeroPorta - 1));
 
                 } else {
 
@@ -655,18 +580,13 @@ public class joc {
                 return false;
         }
 
-    public void parlar(
-                jugador jugador1,
-                Alien alien1,
-                Company companyia1) {
+    public void parlar(jugador jugador1, Alien alien1, Company companyia1) {
 
-        if (jugador1.getHabitacioActual() ==
-                alien1.getHabitacioActual()) {
+        if (jugador1.getHabitacioActual() == alien1.getHabitacioActual()) {
 
                 System.out.println("Malien: Grrrrr...");
 
-        } else if (jugador1.getHabitacioActual() ==
-                companyia1.getHabitacioActual()) {
+        } else if (jugador1.getHabitacioActual() == companyia1.getHabitacioActual()) {
 
                 if (!companyia1.estaDespert()) {
 
@@ -676,12 +596,9 @@ public class joc {
 
                         System.out.println("Company: Hola Bond!");
                 }
-
         } else {
 
-                System.out.println(
-                "No hi ha cap personatge en aquesta habitacio."
-                );
+                System.out.println("No hi ha cap personatge en aquesta habitacio.");
         }
     }
 

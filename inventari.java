@@ -93,9 +93,7 @@ public class inventari {
 
             if (objectes[i] != null) {
 
-                System.out.println(
-                    (i + 1) + ". " + objectes[i].getNom()
-                );
+                System.out.println((i + 1) + ". " + objectes[i].getNom());
 
                 hiHaObjectes = true;
             }

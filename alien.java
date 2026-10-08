@@ -98,9 +98,7 @@ public class Alien {
 
         int portaEscollida = random.nextInt(quantitatPortes);
 
-        habitacio novaHabitacio =
-                portesDisponibles[portaEscollida]
-                        .obtenirAltraHabitacio(habitacioActual);
+        habitacio novaHabitacio = portesDisponibles[portaEscollida].obtenirAltraHabitacio(habitacioActual);
 
         if (novaHabitacio != null) {
 
@@ -109,10 +107,7 @@ public class Alien {
             moviments++;
 
             System.out.println();
-            System.out.println(
-                "Malien s'ha mogut a: "
-                + habitacioActual.getNom()
-            );
+            System.out.println("Malien s'ha mogut a: " + habitacioActual.getNom());
             System.out.println();
         }
     }
